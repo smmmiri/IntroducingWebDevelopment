@@ -14,9 +14,12 @@ public partial class Customer
 {
     [Key]
     [StringLength(5)]
+    [RegularExpression("[A-Z]{5}")]
+    [Required]
     public string CustomerId { get; set; } = null!;
 
     [StringLength(40)]
+    [Required]
     public string CompanyName { get; set; } = null!;
 
     [StringLength(30)]
@@ -41,6 +44,7 @@ public partial class Customer
     public string? Country { get; set; }
 
     [StringLength(24)]
+    [Phone]
     public string? Phone { get; set; }
 
     [StringLength(24)]
