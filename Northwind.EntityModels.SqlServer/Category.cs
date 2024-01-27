@@ -13,6 +13,7 @@ public partial class Category
     public int CategoryId { get; set; }
 
     [StringLength(15)]
+    [Required]
     public string CategoryName { get; set; } = null!;
 
     [Column(TypeName = "ntext")]

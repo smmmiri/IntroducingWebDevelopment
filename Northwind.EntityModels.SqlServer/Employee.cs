@@ -14,9 +14,11 @@ public partial class Employee
     public int EmployeeId { get; set; }
 
     [StringLength(20)]
+    [Required]
     public string LastName { get; set; } = null!;
 
     [StringLength(10)]
+    [Required]
     public string FirstName { get; set; } = null!;
 
     [StringLength(30)]

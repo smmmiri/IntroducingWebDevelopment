@@ -14,6 +14,7 @@ public partial class Supplier
     public int SupplierId { get; set; }
 
     [StringLength(40)]
+    [Required]
     public string CompanyName { get; set; } = null!;
 
     [StringLength(30)]

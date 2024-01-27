@@ -17,6 +17,7 @@ public partial class Product
     public int ProductId { get; set; }
 
     [StringLength(40)]
+    [Required]
     public string ProductName { get; set; } = null!;
 
     public int? SupplierId { get; set; }
