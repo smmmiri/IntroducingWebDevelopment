@@ -11,9 +11,11 @@ public partial class Territory
     [Key]
     [Column("TerritoryID")]
     [StringLength(20)]
+    [Required]
     public string TerritoryId { get; set; } = null!;
 
     [StringLength(50)]
+    [Required]
     public string TerritoryDescription { get; set; } = null!;
 
     [Column("RegionID")]

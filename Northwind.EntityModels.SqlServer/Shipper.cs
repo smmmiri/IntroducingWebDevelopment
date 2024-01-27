@@ -12,6 +12,7 @@ public partial class Shipper
     public int ShipperId { get; set; }
 
     [StringLength(40)]
+    [Required]
     public string CompanyName { get; set; } = null!;
 
     [StringLength(24)]

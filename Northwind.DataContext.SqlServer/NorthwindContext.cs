@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.Data.SqlClient; // To use SqlConnectionStringBuilder.
 using Microsoft.EntityFrameworkCore;
 
 namespace Northwind.EntityModels;
@@ -70,8 +69,32 @@ public partial class NorthwindContext : DbContext
     public virtual DbSet<Territory> Territories { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=Northwind;Integrated Security=true;TrustServerCertificate=true;");
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            SqlConnectionStringBuilder builder = new()
+            {
+                // "ServerName\InstanceName" e.g. @".\sqlexpress"
+                DataSource = ".",
+                InitialCatalog = "Northwind",
+                TrustServerCertificate = true,
+                MultipleActiveResultSets = true,
+                // Because we want to fail faster. Default is 15 seconds.
+                ConnectTimeout = 3,
+                // If using Windows Integrated authentication.
+                IntegratedSecurity = true,
+                // If using SQL Server authentication.
+                // builder.UserId = Environment.GetEnvironmentVariable("MY_SQL_USR");
+                // builder.Password = Environment.GetEnvironmentVariable("MY_SQL_PWD");
+            };
+
+            optionsBuilder.UseSqlServer(builder.ConnectionString);
+            optionsBuilder.LogTo(NorthwindContextLogger.WriteLine, new[]
+            {
+                Microsoft.EntityFrameworkCore.Diagnostics.RelationalEventId.CommandExecuting
+            });
+        }
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
