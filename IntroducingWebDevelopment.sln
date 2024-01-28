@@ -5,7 +5,9 @@ VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.EntityModels.SqlServer", "Northwind.EntityModels.SqlServer\Northwind.EntityModels.SqlServer.csproj", "{CD94357F-59AC-402F-B9FE-4CA45636E725}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.DataContext.SqlServer", "Northwind.DataContext.SqlServer\Northwind.DataContext.SqlServer.csproj", "{303B6680-6B27-4076-A96D-C0957FFFFFDF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.DataContext.SqlServer", "Northwind.DataContext.SqlServer\Northwind.DataContext.SqlServer.csproj", "{303B6680-6B27-4076-A96D-C0957FFFFFDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.UnitTests", "Northwind.UnitTests\Northwind.UnitTests.csproj", "{B3CBD1C3-3865-4716-912E-331139882928}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{303B6680-6B27-4076-A96D-C0957FFFFFDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{303B6680-6B27-4076-A96D-C0957FFFFFDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{303B6680-6B27-4076-A96D-C0957FFFFFDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3CBD1C3-3865-4716-912E-331139882928}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3CBD1C3-3865-4716-912E-331139882928}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3CBD1C3-3865-4716-912E-331139882928}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3CBD1C3-3865-4716-912E-331139882928}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
