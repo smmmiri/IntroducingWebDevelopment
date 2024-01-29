@@ -9,8 +9,10 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseDefaultFiles(); // index.html, default.html, and so on.
+app.UseStaticFiles();
 
-app.MapGet("/", () => $"Environment is {app.Environment.EnvironmentName}");
+app.MapGet("/hello", () => $"Environment is {app.Environment.EnvironmentName}");
 
 #endregion
 
