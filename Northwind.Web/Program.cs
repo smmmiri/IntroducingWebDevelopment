@@ -1,8 +1,11 @@
+using Northwind.EntityModels; // To use AddNorthwindContext method.
+
 #region Configure the web server host and services
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
+builder.Services.AddNorthwindContext();
 
 var app = builder.Build();
 
@@ -12,7 +15,7 @@ var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
 {
-    app.UseHsts();
+	app.UseHsts();
 }
 
 app.UseHttpsRedirection();
