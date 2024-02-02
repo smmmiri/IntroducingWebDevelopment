@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Northwind.DataContext.SqlServer\Northwind.DataContext.SqlServer.csproj" />
+    <ProjectReference Include="..\Northwind.Razor.Employees\Northwind.Razor.Employees.csproj" />
   </ItemGroup>
 
 </Project>
