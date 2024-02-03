@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
 builder.Services.AddNorthwindContext();
+builder.Services.AddRequestDecompression();
 
 var app = builder.Build();
 
@@ -40,6 +41,7 @@ app.Use(async (HttpContext context, Func<Task> next) =>
 	// We could modify the response after calling the next delegate.
 });
 
+app.UseRequestDecompression();
 app.UseHttpsRedirection();
 app.UseDefaultFiles(); // index.html, default.html, and so on.
 app.UseStaticFiles();
