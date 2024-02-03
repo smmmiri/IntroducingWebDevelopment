@@ -1,6 +1,10 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Northwind.Mvc.Data;
+#region Import namespaces
+
+using Microsoft.AspNetCore.Identity; // To use IdentityUser.
+using Microsoft.EntityFrameworkCore; // To use UseSqlServer method.
+using Northwind.Mvc.Data; // To use ApplicationDbContext.
+
+#endregion
 
 var builder = WebApplication.CreateBuilder(args);
 
