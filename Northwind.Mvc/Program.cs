@@ -1,7 +1,9 @@
 #region Import namespaces
 
 using Microsoft.AspNetCore.Identity; // To use IdentityUser.
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore; // To use UseSqlServer method.
+using Northwind.EntityModels; // To use AddNorthwindContext method.
 using Northwind.Mvc.Data; // To use ApplicationDbContext.
 
 #endregion
@@ -13,6 +15,8 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
 	throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
+string? sqlServerConnection = builder.Configuration.GetConnectionString("NorthwindConnection");
+
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString)); // Or UseSqlite.
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -20,6 +24,25 @@ builder.Services
 	.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
 	.AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+
+if (sqlServerConnection is null)
+{
+	Console.WriteLine("SQL Server database connection string is missing!");
+}
+else
+{
+	// If you are using SQL Server authentication then disable
+	// Windows Integrated authentication and set user and password.
+	SqlConnectionStringBuilder sql = new(sqlServerConnection)
+	{
+		IntegratedSecurity = false,
+		UserID = Environment.GetEnvironmentVariable("MY_SQL_USR"),
+		Password = Environment.GetEnvironmentVariable("MY_SQL_PWD")
+	};
+
+	builder.Services.AddNorthwindContext(sql.ConnectionString);
+}
 
 var app = builder.Build();
 
