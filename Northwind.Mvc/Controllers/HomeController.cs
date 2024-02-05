@@ -8,54 +8,73 @@ namespace Northwind.Mvc.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-    private readonly NorthwindContext _database;
+	private readonly ILogger<HomeController> _logger;
+	private readonly NorthwindContext _database;
 
-    public HomeController(ILogger<HomeController> logger, NorthwindContext database)
-    {
-        _logger = logger;
-        _database = database;
-    }
+	public HomeController(ILogger<HomeController> logger, NorthwindContext database)
+	{
+		_logger = logger;
+		_database = database;
+	}
 
-    public IActionResult Index()
-    {
-        _logger.LogError("This is a serious error (not really!)");
-        _logger.LogWarning("This is your first warning!");
-        _logger.LogWarning("Second warning!");
-        _logger.LogInformation("I am in the Index method of the HomeController.");
+	public IActionResult Index()
+	{
+		_logger.LogError("This is a serious error (not really!)");
+		_logger.LogWarning("This is your first warning!");
+		_logger.LogWarning("Second warning!");
+		_logger.LogInformation("I am in the Index method of the HomeController.");
 
-        HomeIndexViewModel model = new(VisitorCount: Random.Shared.Next(1, 1001),
-            Categories: _database.Categories.ToList(), Products: _database.Products.ToList());
+		HomeIndexViewModel model = new(VisitorCount: Random.Shared.Next(1, 1001),
+			Categories: _database.Categories.ToList(), Products: _database.Products.ToList());
 
-        return View(model); // Pass the model to the view.
-    }
+		return View(model); // Pass the model to the view.
+	}
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+	public IActionResult Privacy()
+	{
+		return View();
+	}
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
+	[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+	public IActionResult Error()
+	{
+		return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+	}
 
-    public IActionResult ProductDetail(int? id)
-    {
-        if (!id.HasValue)
-        {
-            return BadRequest("You must pass a product ID in the route, for example, / Home / ProductDetail / 21");
-        }
+	public IActionResult ProductDetail(int? id)
+	{
+		if (!id.HasValue)
+		{
+			return BadRequest("You must pass a product ID in the route, for example, / Home / ProductDetail / 21");
+		}
 
-        Product? model = _database.Products
-            .Include(p => p.Category)
-            .SingleOrDefault(p => p.ProductId == id);
-        if (model is null)
-        {
-            return NotFound($"ProductId {id} not found.");
-        }
+		Product? model = _database.Products
+			.Include(p => p.Category)
+			.SingleOrDefault(p => p.ProductId == id);
+		if (model is null)
+		{
+			return NotFound($"ProductId {id} not found.");
+		}
 
-        return View(model); // Pass model to view and then return result.
-    }
+		return View(model); // Pass model to view and then return result.
+	}
+
+	// This action method will handle GET and other requests except POST.
+	public IActionResult ModelBinding()
+	{
+		return View(); // The page with a form to submit.
+	}
+
+	[HttpPost] // This action method will handle POST requests.
+	public IActionResult ModelBinding(Thing thing)
+	{
+		HomeModelBindingViewModel model = new(
+			Thing: thing,
+			HasErrors: !ModelState.IsValid,
+			ValidationErrors: ModelState.Values
+			.SelectMany(state => state.Errors)
+			.Select(error => error.ErrorMessage));
+
+		return View(model); // Show the model bound thing.
+	}
 }
