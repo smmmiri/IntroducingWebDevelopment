@@ -36,9 +36,9 @@ else
 	// Windows Integrated authentication and set user and password.
 	SqlConnectionStringBuilder sql = new(sqlServerConnection)
 	{
-		IntegratedSecurity = false,
-		UserID = Environment.GetEnvironmentVariable("MY_SQL_USR"),
-		Password = Environment.GetEnvironmentVariable("MY_SQL_PWD")
+		IntegratedSecurity = true,
+		//UserID = Environment.GetEnvironmentVariable("MY_SQL_USR"),
+		//Password = Environment.GetEnvironmentVariable("MY_SQL_PWD")
 	};
 
 	builder.Services.AddNorthwindContext(sql.ConnectionString);
