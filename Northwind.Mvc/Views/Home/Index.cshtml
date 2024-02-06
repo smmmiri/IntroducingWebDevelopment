@@ -72,6 +72,11 @@
         </p>
         @if (Model is not null)
         {
+            <h3>Query products by price</h3>
+            <form asp-action="ProductsThatCostMoreThan" method="GET">
+                <input name="price" placeholder="Enter a product price" />
+                <input type="submit" />
+            </form>
             <h2>Products</h2>
             <div id="product-columns">
                 <ul class="list-group">
