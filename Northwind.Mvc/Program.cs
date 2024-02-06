@@ -74,9 +74,11 @@ app.UseRouting();
 app.UseAuthorization();
 app.UseOutputCache();
 
-app.MapControllerRoute(
+app
+    .MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}")
+    .CacheOutput();
 
 app.MapRazorPages();
 
