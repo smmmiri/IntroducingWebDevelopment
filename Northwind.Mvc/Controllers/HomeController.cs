@@ -17,6 +17,7 @@ public class HomeController : Controller
 		_database = database;
 	}
 
+	[ResponseCache(Duration = 10 /* seconds */, Location = ResponseCacheLocation.Any)]
 	public IActionResult Index()
 	{
 		_logger.LogError("This is a serious error (not really!)");
@@ -30,6 +31,7 @@ public class HomeController : Controller
 		return View(model); // Pass the model to the view.
 	}
 
+	[Route("privacy")]
 	public IActionResult Privacy()
 	{
 		return View();
