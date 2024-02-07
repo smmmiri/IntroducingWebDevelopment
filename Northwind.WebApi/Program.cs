@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Mvc.Formatters; // To use IOutputFormatter.
+using Microsoft.Extensions.Caching.Memory; // To use IMemoryCache and so on.
 using Northwind.EntityModels; // To use AddNorthwindContext method.
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddSingleton<IMemoryCache>(new MemoryCache(new MemoryCacheOptions()));
 
 builder.Services.AddNorthwindContext();
 builder.Services
