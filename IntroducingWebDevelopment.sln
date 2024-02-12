@@ -15,7 +15,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.Razor.Employees",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.Mvc", "Northwind.Mvc\Northwind.Mvc.csproj", "{CF83ED48-F978-489E-86DF-4D926B54DB98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.WebApi", "Northwind.WebApi\Northwind.WebApi.csproj", "{5640C1B3-6C77-4CCB-9508-3999CC08E4D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.WebApi", "Northwind.WebApi\Northwind.WebApi.csproj", "{5640C1B3-6C77-4CCB-9508-3999CC08E4D9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HttpRequests", "HttpRequests", "{FFCA1B8D-33CE-4251-91B6-96949B7901B8}"
+	ProjectSection(SolutionItems) = preProject
+		create-customer.http = create-customer.http
+		get-customers.http = get-customers.http
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
