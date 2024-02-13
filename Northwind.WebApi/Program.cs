@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc.Formatters; // To use IOutputFormatter.
 using Microsoft.Extensions.Caching.Memory; // To use IMemoryCache and so on.
 using Northwind.EntityModels; // To use AddNorthwindContext method.
 using Northwind.WebApi.Repositories; // To use ICustomerRepository.
+using Swashbuckle.AspNetCore.SwaggerUI; // To use SubmitMethod.
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,7 +45,17 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Northwind Service API Version 1");
+        c.SupportedSubmitMethods(new[]
+        {
+            SubmitMethod.Get,
+            SubmitMethod.Post,
+            SubmitMethod.Put,
+            SubmitMethod.Delete
+        });
+    });
 }
 
 app.UseHttpsRedirection();
