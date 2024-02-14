@@ -46,6 +46,12 @@ builder.Services
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services
+    .AddHealthChecks()
+    .AddDbContextCheck<NorthwindContext>()
+    // Execute SELECT 1 using the specified connection string.
+    .AddSqlServer("Data Source=.;Initial Catalog=Northwind;Integrated Security=true;TrustServerCertificate=true;");
+
 var app = builder.Build();
 
 app.UseHttpLogging();
@@ -70,6 +76,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseHealthChecks(path: "/howdoyoufeel");
 
 app.MapControllers();
 
