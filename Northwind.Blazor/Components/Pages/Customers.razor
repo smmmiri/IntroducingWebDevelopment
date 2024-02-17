@@ -1,4 +1,5 @@
 ﻿@page "/customers/{country?}"
+@attribute [StreamRendering(true)]
 @inject INorthwindService _service
 <h3>
 	Customers @(string.IsNullOrWhiteSpace(Country) ? "Worldwide" : "in " + Country)
@@ -54,6 +55,8 @@ else
 
 	protected override async Task OnParametersSetAsync()
 	{
+		await Task.Delay(1000); // Delay for one second.
+
 		if (string.IsNullOrWhiteSpace(Country))
 		{
 			customers = await _service.GetCustomersAsync();
