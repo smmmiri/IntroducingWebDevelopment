@@ -4,12 +4,44 @@
 @{
     ViewData["Title"] = "Home Page";
     string currentItem = "";
+    ToDo[]? todos = ViewData["todos"] as ToDo[];
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
     <p class="alert alert-primary">@DateTime.Now.ToLongTimeString()</p>
+    <p>
+        <h4>To Dos</h4>
+        @if ((todos is null) || (!todos.Any()))
+        {
+        <p>No to dos found.</p>
+        }
+        else
+        {
+        <table class="table table-info">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Due By</th>
+                    <th>Is Complete?</th>
+                </tr>
+            </thead>
+            <tbody>
+                    @foreach (ToDo todo in todos)
+                    {
+                    <tr>
+                        <td>@todo.Id</td>
+                        <td>@todo.Title</td>
+                        <td>@todo.DueBy</td>
+                        <td>@todo.IsComplete</td>
+                    </tr>
+                    }
+            </tbody>
+        </table>
+        }
+    </p>
     <p><a asp-action="ModelBinding" asp-controller="Home">Binding</a></p>
 </div>
 
