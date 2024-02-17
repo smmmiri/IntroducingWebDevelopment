@@ -5,6 +5,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore; // To use UseSqlServer method.
 using Northwind.EntityModels; // To use AddNorthwindContext method.
 using Northwind.Mvc.Data; // To use ApplicationDbContext.
+using System.Net; // To use HttpVersion.
 using System.Net.Http.Headers; // To use MediaTypeWithQualityHeaderValue.
 
 #endregion
@@ -53,6 +54,9 @@ builder.Services.AddOutputCache(option =>
 
 builder.Services.AddHttpClient(name: "Northwind.WebApi", configureClient: options =>
 {
+    options.DefaultRequestVersion = HttpVersion.Version30;
+    options.DefaultVersionPolicy = HttpVersionPolicy.RequestVersionOrLower;
+
     options.BaseAddress = new Uri("https://localhost:5151/");
     options.DefaultRequestHeaders.Accept
     .Add(new MediaTypeWithQualityHeaderValue(mediaType: "application/json", quality: 1.0));
