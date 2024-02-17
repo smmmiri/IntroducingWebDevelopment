@@ -1,4 +1,6 @@
-﻿<h3>
+﻿@page "/customers/{country?}"
+
+<h3>
 	Customers @(string.IsNullOrWhiteSpace(Country) ? "Worldwide" : "in " + Country)
 </h3>
 
