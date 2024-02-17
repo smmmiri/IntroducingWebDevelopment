@@ -30,6 +30,23 @@ public class HomeController : Controller
         HomeIndexViewModel model = new(VisitorCount: Random.Shared.Next(1, 1001),
             Categories: await _database.Categories.ToListAsync(), Products: await _database.Products.ToListAsync());
 
+        try
+        {
+            HttpClient client = _clientFactory.CreateClient(name: "Northwind.MinimalApi");
+
+            HttpRequestMessage request = new(method: HttpMethod.Get, requestUri: "todos");
+
+            HttpResponseMessage response = await client.SendAsync(request);
+
+            ViewData["todos"] = await response.Content.ReadFromJsonAsync<ToDo[]>();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning($"The Minimal.WebApi service is not responding. Exception: {ex.Message}");
+
+            ViewData["todos"] = Enumerable.Empty<ToDo>().ToArray();
+        }
+
         return View(model); // Pass the model to the view.
     }
 
