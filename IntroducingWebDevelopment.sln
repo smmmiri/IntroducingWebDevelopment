@@ -23,11 +23,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HttpRequests", "HttpRequest
 		get-customers.http = get-customers.http
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.MinimalApi", "Northwind.MinimalApi\Northwind.MinimalApi.csproj", "{365BA2A9-6802-4130-BB39-A431EE4DB551}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.MinimalApi", "Northwind.MinimalApi\Northwind.MinimalApi.csproj", "{365BA2A9-6802-4130-BB39-A431EE4DB551}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Blazor", "Northwind.Blazor\Northwind.Blazor.csproj", "{16A7BC1D-07BA-4A35-8479-9356A7DB037C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.Blazor", "Northwind.Blazor\Northwind.Blazor.csproj", "{16A7BC1D-07BA-4A35-8479-9356A7DB037C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Blazor.Services", "Northwind.Blazor.Services\Northwind.Blazor.Services.csproj", "{C1712A88-D234-4FF5-A37D-92D93A7ABF44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.Blazor.Services", "Northwind.Blazor.Services\Northwind.Blazor.Services.csproj", "{C1712A88-D234-4FF5-A37D-92D93A7ABF44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Blazor.Wasm", "Northwind.Blazor.Wasm\Northwind.Blazor.Wasm.csproj", "{01F5CB9A-B10D-4F6E-86CA-44F4EE7647CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{C1712A88-D234-4FF5-A37D-92D93A7ABF44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1712A88-D234-4FF5-A37D-92D93A7ABF44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1712A88-D234-4FF5-A37D-92D93A7ABF44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01F5CB9A-B10D-4F6E-86CA-44F4EE7647CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01F5CB9A-B10D-4F6E-86CA-44F4EE7647CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01F5CB9A-B10D-4F6E-86CA-44F4EE7647CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01F5CB9A-B10D-4F6E-86CA-44F4EE7647CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
